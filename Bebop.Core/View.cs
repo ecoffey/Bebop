@@ -9,6 +9,8 @@ namespace Bebop
     {
 		private const string VERB_GET = "GET";
 		private const string VERB_POST = "POST";
+		private const string VERB_PUT = "PUT";
+		private const string VERB_DELETE = "DELETE";
 
         #region IHttpHandler Members
 
@@ -29,6 +31,14 @@ namespace Bebop
 			else if (requestVerb == VERB_POST)
 			{
 				viewResponse = this.Post(context);
+			}
+			else if (requestVerb == VERB_PUT)
+			{
+				viewResponse = this.Put(context);
+			}
+			else if (requestVerb == VERB_DELETE)
+			{
+				viewResponse = this.Delete(context);
 			}
 			else
 			{
@@ -53,5 +63,15 @@ namespace Bebop
         {
             throw new InvalidOperationException("This view does not support the verb 'POST'");
         }
+
+		protected virtual IViewResponse Put(HttpContext context)
+		{
+			throw new InvalidOperationException("This view does not support the verb 'PUT'");
+		}
+
+		protected virtual IViewResponse Delete(HttpContext context)
+		{
+			throw new InvalidOperationException("This view does not support the verb 'DELETE'");
+		}
     }
 }

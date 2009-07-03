@@ -55,6 +55,9 @@
     <Compile Include="RouteMapping.cs" />
     <Compile Include="SimpleResponse.cs" />
     <Compile Include="View.cs" />
+    <Compile Include="ViewPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ using System.Web;
 
 using Bebop;
 
-namespace RoutingTest
+namespace Bebop.Example
 {
     public class SomethingView : View
     {
