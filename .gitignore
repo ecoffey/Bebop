@@ -1,0 +1,4 @@
+*.dll
+*.suo
+bin/
+obj/
