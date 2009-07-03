@@ -7,11 +7,11 @@ using Bebop;
 
 namespace Bebop.Example
 {
-    public class SomethingView : View
+    public sealed class SomethingView : View
     {
 		protected override IViewResponse Get(HttpContext context)
 		{
-			return new SimpleResponse("Hello World");
+			return new RedirectResponse("/yargbots");
 		}
     }
 }

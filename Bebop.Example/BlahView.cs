@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bebop.Example
 {
-	public class BlahView : View
+	public sealed class BlahView : View
 	{
 		protected override IViewResponse Get(HttpContext context)
 		{

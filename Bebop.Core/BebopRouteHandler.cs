@@ -4,7 +4,7 @@ using System.Web.Routing;
 
 namespace Bebop
 {
-    public class BebopRouteHandler : IRouteHandler
+    public sealed class BebopRouteHandler : IRouteHandler
     {
         #region IRouteHandler Members
 
