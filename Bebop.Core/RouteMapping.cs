@@ -8,14 +8,12 @@ namespace Bebop
 {
     public static class RouteMapping
     {
-        public static Route Map(
+        public static Route Map<T>(
             this RouteCollection routes,
-            string url,
-            Type viewType)
+            string url)
+			where T : new()
         {
-            var route = new Route(url, new BebopRouteHandler());
-
-            route.DataTokens = new RouteValueDictionary() { { "ViewType", viewType } };
+            var route = new Route(url, new BebopRouteHandler<T>());
 
             routes.Add(route);
 

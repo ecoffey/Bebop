@@ -12,8 +12,9 @@ namespace Bebop.Example
     {
         private void RegisterRoutes(RouteCollection routes)
         {
-			routes.Map("yargbots", typeof(BlahView));
-            routes.Map("something", typeof(SomethingView));
+			routes.Map<BlahView>("yargbots");
+            routes.Map<SomethingView>("something");
+
         }
 
         protected void Application_Start(object sender, EventArgs e)

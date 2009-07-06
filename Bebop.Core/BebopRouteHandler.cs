@@ -4,17 +4,13 @@ using System.Web.Routing;
 
 namespace Bebop
 {
-    public sealed class BebopRouteHandler : IRouteHandler
+    public sealed class BebopRouteHandler<T> : IRouteHandler where T : new()
     {
         #region IRouteHandler Members
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            var viewType = requestContext.RouteData.DataTokens["ViewType"] as Type;
-
-            var constructor = viewType.GetConstructor(new Type[] { });
-
-            var view = constructor.Invoke(null);
+			var view = new T();
 
             return view as IHttpHandler;
         }
