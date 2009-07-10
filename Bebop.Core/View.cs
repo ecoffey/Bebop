@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bebop
 {
-    public abstract class View : IHttpHandler, IView
+    public abstract class View : IView
     {
 		private const string VERB_GET = "GET";
 		private const string VERB_POST = "POST";
