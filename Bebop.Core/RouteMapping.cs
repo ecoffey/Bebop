@@ -11,7 +11,7 @@ namespace Bebop
         public static Route Map<T>(
             this RouteCollection routes,
             string url)
-			where T : new()
+			where T : IView, new()
         {
             var route = new Route(url, new BebopRouteHandler<T>());
 
@@ -19,5 +19,16 @@ namespace Bebop
 
             return route;
         }
+
+		public static void Map(
+			this RouteCollection routes,
+			string root,
+			IUrlConfiguration urlConfiguration)
+		{
+			foreach (var route in urlConfiguration.Map(routes))
+			{
+				route.Url = String.Format("{0}{1}", root, route.Url);
+			}
+		}
     }
 }

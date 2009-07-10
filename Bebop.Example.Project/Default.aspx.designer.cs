@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bebop.Example {
+namespace Bebop.Example.Project {
     
     
     public partial class _Default {

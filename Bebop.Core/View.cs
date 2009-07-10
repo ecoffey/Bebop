@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bebop
 {
-    public abstract class View : IHttpHandler
+    public abstract class View : IHttpHandler, IView
     {
 		private const string VERB_GET = "GET";
 		private const string VERB_POST = "POST";
@@ -54,22 +54,22 @@ namespace Bebop
 
         #endregion
 
-		protected virtual IViewResponse Get(HttpContext context)
+		public virtual IViewResponse Get(HttpContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'GET'");
 		}
 
-        protected virtual IViewResponse Post(HttpContext context)
+        public virtual IViewResponse Post(HttpContext context)
         {
             throw new InvalidOperationException("This view does not support the verb 'POST'");
         }
 
-		protected virtual IViewResponse Put(HttpContext context)
+		public virtual IViewResponse Put(HttpContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'PUT'");
 		}
 
-		protected virtual IViewResponse Delete(HttpContext context)
+		public virtual IViewResponse Delete(HttpContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'DELETE'");
 		}

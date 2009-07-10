@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BebopRouteHandler.cs" />
+    <Compile Include="IUrlConfiguration.cs" />
+    <Compile Include="IView.cs" />
     <Compile Include="IViewResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedirectResponse.cs" />

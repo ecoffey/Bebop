@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Bebop.Example.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Bebop.Example.Project.Global" Language="C#" %>

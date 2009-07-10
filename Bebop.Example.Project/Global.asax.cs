@@ -6,15 +6,13 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
 
-namespace Bebop.Example
+namespace Bebop.Example.Project
 {
     public class Global : System.Web.HttpApplication
     {
         private void RegisterRoutes(RouteCollection routes)
         {
-			routes.Map<BlahView>("yargbots");
-            routes.Map<SomethingView>("something");
-
+			routes.Map("something/", new Bebop.Example.App.UrlConfiguration());
         }
 
         protected void Application_Start(object sender, EventArgs e)
