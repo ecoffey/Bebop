@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Routing;
 
 namespace Bebop
 {
@@ -13,15 +14,22 @@ namespace Bebop
 		private const string VERB_PUT = "PUT";
 		private const string VERB_DELETE = "DELETE";
 
+		private RequestContext _requestContext;
 		private IView _view;
 
-		public HttpHandler(IView view)
+		public HttpHandler(RequestContext requestContext, IView view)
 		{
+			if (requestContext == null)
+			{
+				throw new ArgumentNullException("requestContext");
+			}
+
 			if (view == null)
 			{
 				throw new ArgumentNullException("view");
 			}
 
+			_requestContext = requestContext;
 			_view = view;
 		}
 
@@ -34,24 +42,25 @@ namespace Bebop
 
 		public void ProcessRequest(HttpContext context)
 		{
-			IViewResponse viewResponse = null;
+			var viewResponse = null as IViewResponse;
+			var viewRequestContext = new ViewRequestContext(context, _requestContext.RouteData.Values);
 			var requestVerb = context.Request.HttpMethod;
 
 			if (requestVerb == VERB_GET)
 			{
-				viewResponse = _view.Get(context);
+				viewResponse = _view.Get(viewRequestContext);
 			}
 			else if (requestVerb == VERB_POST)
 			{
-				viewResponse = _view.Post(context);
+				viewResponse = _view.Post(viewRequestContext);
 			}
 			else if (requestVerb == VERB_PUT)
 			{
-				viewResponse = _view.Put(context);
+				viewResponse = _view.Put(viewRequestContext);
 			}
 			else if (requestVerb == VERB_DELETE)
 			{
-				viewResponse = _view.Delete(context);
+				viewResponse = _view.Delete(viewRequestContext);
 			}
 			else
 			{

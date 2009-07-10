@@ -7,22 +7,22 @@ namespace Bebop
 {
     public abstract class View : IView
     {
-		public virtual IViewResponse Get(HttpContext context)
+		public virtual IViewResponse Get(ViewRequestContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'GET'");
 		}
 
-        public virtual IViewResponse Post(HttpContext context)
+		public virtual IViewResponse Post(ViewRequestContext context)
         {
             throw new InvalidOperationException("This view does not support the verb 'POST'");
         }
 
-		public virtual IViewResponse Put(HttpContext context)
+		public virtual IViewResponse Put(ViewRequestContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'PUT'");
 		}
 
-		public virtual IViewResponse Delete(HttpContext context)
+		public virtual IViewResponse Delete(ViewRequestContext context)
 		{
 			throw new InvalidOperationException("This view does not support the verb 'DELETE'");
 		}

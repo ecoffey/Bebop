@@ -7,7 +7,7 @@ namespace Bebop.Example.App
 {
 	public sealed class BlahView : View
 	{
-		public override IViewResponse Get(System.Web.HttpContext context)
+		public override IViewResponse Get(ViewRequestContext context)
 		{
 			return new TemplatePageResponse("~/Blah.aspx");
 		}

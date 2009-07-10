@@ -10,7 +10,9 @@ namespace Bebop
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-			return new HttpHandler(new T());
+			return new HttpHandler(
+				requestContext,
+				new T());
         }
 
         #endregion

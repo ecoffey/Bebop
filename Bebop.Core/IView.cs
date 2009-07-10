@@ -8,12 +8,12 @@ namespace Bebop
 {
 	public interface IView
 	{
-		IViewResponse Get(HttpContext context);
+		IViewResponse Get(ViewRequestContext context);
 
-		IViewResponse Post(HttpContext context);
+		IViewResponse Post(ViewRequestContext context);
 
-		IViewResponse Put(HttpContext context);
+		IViewResponse Put(ViewRequestContext context);
 
-		IViewResponse Delete(HttpContext context);
+		IViewResponse Delete(ViewRequestContext context);
 	}
 }
