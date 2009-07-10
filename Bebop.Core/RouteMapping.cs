@@ -13,7 +13,7 @@ namespace Bebop
             string url)
 			where T : IView, new()
         {
-            var route = new Route(url, new BebopRouteHandler<T>());
+            var route = new Route(url, new RouteHandler<T>());
 
             routes.Add(route);
 

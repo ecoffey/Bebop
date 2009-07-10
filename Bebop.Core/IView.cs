@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Bebop
 {
-	public interface IView : IHttpHandler
+	public interface IView
 	{
 		IViewResponse Get(HttpContext context);
 

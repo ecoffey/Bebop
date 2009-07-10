@@ -49,12 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BebopRouteHandler.cs" />
+    <Compile Include="HttpHandler.cs" />
     <Compile Include="IUrlConfiguration.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="IViewResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedirectResponse.cs" />
+    <Compile Include="RouteHandler.cs" />
     <Compile Include="RouteMapping.cs" />
     <Compile Include="SimpleResponse.cs" />
     <Compile Include="TemplatePage.cs">
