@@ -12,7 +12,7 @@ namespace Bebop.Example.App
 
 		public IEnumerable<Route> Map(RouteCollection routes)
 		{
-			yield return routes.Map<BlahView>("blah");
+			yield return routes.Map<BlahView>("blah/{d}");
 		}
 
 		#endregion

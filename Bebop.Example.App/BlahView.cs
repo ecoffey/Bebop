@@ -9,7 +9,9 @@ namespace Bebop.Example.App
 	{
 		public override IViewResponse Get(ViewRequestContext context)
 		{
-			return new TemplatePageResponse("~/Blah.aspx");
+			var d = context.Values["d"];
+
+			return new SimpleResponse(String.Format("Hello {0}", d));
 		}
 	}
 }
