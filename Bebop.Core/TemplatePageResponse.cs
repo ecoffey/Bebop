@@ -13,6 +13,11 @@ namespace Bebop
 
 		public TemplatePageResponse(string virtualPath)
 		{
+			if (String.IsNullOrEmpty(virtualPath))
+			{
+				throw new ArgumentOutOfRangeException("virtualPath");
+			}
+
 			_virtualPath = virtualPath;
 		}
 
