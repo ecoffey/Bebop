@@ -23,34 +23,28 @@ namespace Bebop
 				throw new ArgumentOutOfRangeException("url");
 			}
 
-            var route = new Route(url, new RouteHandler<T>());
+            var route = new Route(url, new RouteHandler(typeof(T)));
 
             routes.Add(route);
 
             return route;
         }
 
-		public static void Map(
-			this RouteCollection routes,
+		internal static void MapSubRoutes(
 			string root,
-			IUrlConfiguration urlConfiguration)
+			IEnumerable<Route> subRoutes)
 		{
-			if (routes == null)
-			{
-				throw new ArgumentNullException("routes");
-			}
-
 			if (String.IsNullOrEmpty(root))
 			{
 				throw new ArgumentOutOfRangeException("root");
 			}
 			
-			if (urlConfiguration == null)
+			if (subRoutes == null)
 			{
-				throw new ArgumentNullException("urlConfiguration");
+				throw new ArgumentNullException("subRoutes");
 			}
 
-			foreach (var route in urlConfiguration.Map(routes))
+			foreach (var route in subRoutes)
 			{
 				route.Url = String.Format("{0}{1}", root, route.Url);
 			}

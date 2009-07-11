@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Routing;
+using Autofac.Builder;
 
 namespace Bebop.Example.App
 {
-	public class UrlConfiguration : IUrlConfiguration
+	public sealed class Application : BebopApplication
 	{
-		#region IUrlConfiguration Members
-
-		public IEnumerable<Route> Map(RouteCollection routes)
+		public override IEnumerable<Route> Map(RouteCollection routes)
 		{
 			yield return routes.Map<BlahView>("blah/{d}");
 		}
-
-		#endregion
 	}
 }

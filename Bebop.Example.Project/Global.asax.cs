@@ -5,19 +5,23 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
+using Autofac.Integration.Web;
+using Autofac.Builder;
+using Bebop;
 
 namespace Bebop.Example.Project
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : System.Web.HttpApplication, IContainerProviderAccessor
     {
-        private void RegisterRoutes(RouteCollection routes)
-        {
-			routes.Map("something/", new Bebop.Example.App.UrlConfiguration());
-        }
+		public IContainerProvider ContainerProvider { get; private set; }
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RegisterRoutes(RouteTable.Routes);
+			var config = new BebopConfiguration(RouteTable.Routes, new ContainerBuilder());
+
+			config.AddApplication("something/", new Bebop.Example.App.Application());
+
+			ContainerProvider = config.Build();
         }
 
         protected void Session_Start(object sender, EventArgs e)

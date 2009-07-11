@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=1.4.3.536, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Web, Version=1.4.3.536, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Autofac.Integration.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -49,8 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BebopApplication.cs" />
+    <Compile Include="BebopConfiguration.cs" />
     <Compile Include="HttpHandler.cs" />
-    <Compile Include="IUrlConfiguration.cs" />
+    <Compile Include="IBebopApplication.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="IViewResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
