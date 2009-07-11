@@ -8,5 +8,7 @@
 </head>
 <body>
     Blah de-blah blah blah blah
+    
+    <%= TemplateContext["Something"] %>
 </body>
 </html>

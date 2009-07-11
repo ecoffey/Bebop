@@ -9,6 +9,6 @@ namespace Bebop
 {
 	public class TemplatePage : Page
 	{
-		
+		public IDictionary<string, object> TemplateContext { get; set; }
 	}
 }

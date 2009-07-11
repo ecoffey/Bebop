@@ -10,6 +10,7 @@ namespace Bebop
 	public sealed class TemplatePageResponse : IViewResponse
 	{
 		private string _virtualPath;
+		private IDictionary<string, object> _templateContext;
 
 		public TemplatePageResponse(string virtualPath)
 		{
@@ -21,11 +22,29 @@ namespace Bebop
 			_virtualPath = virtualPath;
 		}
 
+		public TemplatePageResponse(string virtualPath, IDictionary<string, object> templateContext)
+		{
+			if (String.IsNullOrEmpty(virtualPath))
+			{
+				throw new ArgumentOutOfRangeException("virtualPath");
+			}
+
+			if (templateContext == null)
+			{
+				throw new ArgumentNullException("templateContext");
+			}
+
+			_virtualPath = virtualPath;
+			_templateContext = templateContext;
+		}
+
 		#region IViewResponse Members
 
 		public void Execute(HttpResponse response)
 		{
 			var page = BuildManager.CreateInstanceFromVirtualPath(_virtualPath, typeof(TemplatePage)) as TemplatePage;
+
+			page.TemplateContext = _templateContext;
 
 			page.ProcessRequest(HttpContext.Current);
 		}
