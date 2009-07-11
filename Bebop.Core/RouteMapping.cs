@@ -11,7 +11,7 @@ namespace Bebop
         public static Route Map<T>(
             this RouteCollection routes,
             string url)
-			where T : IView, new()
+			where T : IView
         {
 			if (routes == null)
 			{

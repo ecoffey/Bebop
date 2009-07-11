@@ -28,6 +28,11 @@ namespace Bebop
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
+			if (Container == null)
+			{
+				throw new InvalidOperationException("The Container for constructing views is not set");
+			}
+
 			return new HttpHandler(
 				requestContext,
 				Container.Resolve(_viewType) as IView);

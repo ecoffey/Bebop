@@ -13,5 +13,10 @@ namespace Bebop.Example.App
 		{
 			yield return routes.Map<BlahView>("blah/{d}");
 		}
+
+		protected override void Load(ContainerBuilder builder)
+		{
+			builder.Register<SomeService>();
+		}
 	}
 }
