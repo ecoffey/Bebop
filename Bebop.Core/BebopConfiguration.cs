@@ -29,7 +29,7 @@ namespace Bebop
 			_containerBuilder = containerBuilder;
 		}
 
-		public void AddApplication(string urlRoot, IBebopApplication application)
+		public BebopConfiguration AddApplication(string urlRoot, IBebopApplication application)
 		{
 			if (String.IsNullOrEmpty(urlRoot))
 			{
@@ -43,6 +43,8 @@ namespace Bebop
 
 			_containerBuilder.RegisterModule(application);
 			RouteMapping.MapSubRoutes(urlRoot, application.Map(_routes));
+
+			return this;
 		}
 
 		public IContainerProvider Build()

@@ -17,11 +17,10 @@ namespace Bebop.Example.Project
 
         protected void Application_Start(object sender, EventArgs e)
         {
-			var config = new BebopConfiguration(RouteTable.Routes, new ContainerBuilder());
-
-			config.AddApplication("something/", new Bebop.Example.App.Application());
-
-			ContainerProvider = config.Build();
+			ContainerProvider = 
+				new BebopConfiguration(RouteTable.Routes, new ContainerBuilder())
+					.AddApplication("something/", new Bebop.Example.App.Application())
+					.Build();
         }
 
         protected void Session_Start(object sender, EventArgs e)
