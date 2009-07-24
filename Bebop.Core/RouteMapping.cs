@@ -9,15 +9,9 @@ namespace Bebop
     public static class RouteMapping
     {
         public static Route Map<T>(
-            this RouteCollection routes,
             string url)
 			where T : IView
         {
-			if (routes == null)
-			{
-				throw new ArgumentNullException("routes");
-			}
-
 			if (String.IsNullOrEmpty(url))
 			{
 				throw new ArgumentOutOfRangeException("url");
@@ -25,15 +19,19 @@ namespace Bebop
 
             var route = new Route(url, new RouteHandler(typeof(T)));
 
-            routes.Add(route);
-
             return route;
         }
 
 		internal static void MapSubRoutes(
+			this RouteCollection routes,
 			string root,
-			IEnumerable<Route> subRoutes)
+			IEnumerable<BebopRoute> subRoutes)
 		{
+			if (routes == null)
+			{
+				throw new ArgumentNullException("routes");
+			}
+
 			if (String.IsNullOrEmpty(root))
 			{
 				throw new ArgumentOutOfRangeException("root");
@@ -47,6 +45,8 @@ namespace Bebop
 			foreach (var route in subRoutes)
 			{
 				route.Url = String.Format("{0}{1}", root, route.Url);
+
+				routes.Add(route);
 			}
 		}
     }

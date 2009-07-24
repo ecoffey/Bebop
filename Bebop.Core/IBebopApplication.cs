@@ -11,6 +11,6 @@ namespace Bebop
 {
 	public interface IBebopApplication : IModule
 	{
-		IEnumerable<Route> Map(RouteCollection routes);
+		IEnumerable<BebopRoute> Map();
 	}
 }

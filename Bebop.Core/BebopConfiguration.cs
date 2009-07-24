@@ -42,7 +42,7 @@ namespace Bebop
 			}
 
 			_containerBuilder.RegisterModule(application);
-			RouteMapping.MapSubRoutes(urlRoot, application.Map(_routes));
+			_routes.MapSubRoutes(urlRoot, application.Map());
 
 			return this;
 		}

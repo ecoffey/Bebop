@@ -13,7 +13,7 @@ namespace Bebop
 	{
 		#region IApplication Members
 
-		public abstract IEnumerable<Route> Map(RouteCollection routes);
+		public abstract IEnumerable<BebopRoute> Map();
 
 		#endregion
 
