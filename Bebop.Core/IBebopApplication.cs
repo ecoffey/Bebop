@@ -11,6 +11,6 @@ namespace Bebop
 {
 	public interface IBebopApplication : IModule
 	{
-		IEnumerable<BebopRoute> Map();
+		IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory);
 	}
 }

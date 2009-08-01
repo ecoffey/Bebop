@@ -5,6 +5,7 @@ using System.Text;
 using Autofac.Builder;
 using System.Web.Routing;
 using Autofac.Integration.Web;
+using Autofac;
 
 namespace Bebop
 {
@@ -12,6 +13,9 @@ namespace Bebop
 	{
 		private RouteCollection _routes;
 		private ContainerBuilder _containerBuilder;
+
+		private IContainer _container;
+		private BebopRouteFactory _routeFactory;
 
 		public BebopConfiguration(RouteCollection routes, ContainerBuilder containerBuilder)
 		{
@@ -27,6 +31,9 @@ namespace Bebop
 
 			_routes = routes;
 			_containerBuilder = containerBuilder;
+
+			_container = new Container();
+			_routeFactory = new BebopRouteFactory(_container);
 		}
 
 		public BebopConfiguration AddApplication(string urlRoot, IBebopApplication application)
@@ -42,18 +49,16 @@ namespace Bebop
 			}
 
 			_containerBuilder.RegisterModule(application);
-			_routes.MapSubRoutes(urlRoot, application.Map());
+			_routes.MapSubRoutes(urlRoot, application.Map(_routeFactory));
 
 			return this;
 		}
 
 		public IContainerProvider Build()
 		{
-			var containerProvider = new ContainerProvider(_containerBuilder.Build());
+			_containerBuilder.Build(_container);
 
-			RouteHandler.Container = containerProvider.RequestContainer;
-
-			return containerProvider;
+			return new ContainerProvider(_container);
 		}
 	}
 }

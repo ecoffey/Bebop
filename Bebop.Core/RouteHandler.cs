@@ -10,32 +10,32 @@ namespace Bebop
 {
     public sealed class RouteHandler : IRouteHandler
     {
-		internal static IContainer Container { get; set; }
-
 		private Type _viewType;
+		private IContainer _container;
 
-		public RouteHandler(Type viewType)
+		public RouteHandler(Type viewType, IContainer container)
 		{
 			if (viewType == null)
 			{
 				throw new ArgumentNullException("viewType");
 			}
 
+			if (container == null)
+			{
+				throw new ArgumentNullException("container");
+			}
+
 			_viewType = viewType;
+			_container = container;
 		}
 
         #region IRouteHandler Members
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-			if (Container == null)
-			{
-				throw new InvalidOperationException("The Container for constructing views is not set");
-			}
-
 			return new HttpHandler(
 				requestContext,
-				Container.Resolve(_viewType) as IView);
+				_container.Resolve(_viewType) as IView);
         }
 
         #endregion

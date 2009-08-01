@@ -6,22 +6,8 @@ using System.Web.Routing;
 
 namespace Bebop
 {
-    public static class RouteMapping
+    internal static class RouteMapping
     {
-        public static Route Map<T>(
-            string url)
-			where T : IView
-        {
-			if (String.IsNullOrEmpty(url))
-			{
-				throw new ArgumentOutOfRangeException("url");
-			}
-
-            var route = new Route(url, new RouteHandler(typeof(T)));
-
-            return route;
-        }
-
 		internal static void MapSubRoutes(
 			this RouteCollection routes,
 			string root,

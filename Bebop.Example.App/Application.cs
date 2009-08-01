@@ -9,9 +9,9 @@ namespace Bebop.Example.App
 {
 	public sealed class Application : BebopApplication
 	{
-		public override IEnumerable<Route> Map(RouteCollection routes)
+		public override IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory)
 		{
-			yield return routes.Map<BlahView>("blah/{d}");
+			yield return routeFactory.Create<BlahView>("blah/{d}");
 		}
 
 		protected override void Load(ContainerBuilder builder)
