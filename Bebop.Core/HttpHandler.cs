@@ -7,7 +7,7 @@ using System.Web.Routing;
 
 namespace Bebop
 {
-	public sealed class HttpHandler : IHttpHandler
+	internal sealed class HttpHandler : IHttpHandler
 	{
 		private const string VERB_GET = "GET";
 		private const string VERB_POST = "POST";
@@ -17,7 +17,7 @@ namespace Bebop
 		private RequestContext _requestContext;
 		private IView _view;
 
-		public HttpHandler(RequestContext requestContext, IView view)
+		internal HttpHandler(RequestContext requestContext, IView view)
 		{
 			if (requestContext == null)
 			{

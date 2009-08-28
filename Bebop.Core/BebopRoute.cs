@@ -9,7 +9,7 @@ namespace Bebop
 {
 	public abstract class BebopRoute : Route
 	{
-		internal BebopRoute(string url, Type viewType, IContainer container)
+		protected BebopRoute(string url, Type viewType, IContainer container)
 			: base(url, new RouteHandler(viewType, container))
 		{
 		}
