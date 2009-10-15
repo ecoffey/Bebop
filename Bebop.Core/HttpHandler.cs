@@ -37,7 +37,7 @@ namespace Bebop
 
 		public bool IsReusable
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		public void ProcessRequest(HttpContext context)

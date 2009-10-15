@@ -32,19 +32,24 @@ namespace Bebop.Template
 
 	public sealed class ContentNode : INode
 	{
+		private string _content;
+
+		public ContentNode(string content)
+		{
+			_content = content;
+		}
 
 		#region INode Members
 
 		public string Apply(TemplateContext templateContext)
 		{
-			throw new NotImplementedException();
+			return _content;
 		}
 
 		#endregion
 	}
 
-
-	public sealed class LoopNode
+	public sealed class LoopNode : INode
 	{
 		private string _loopVariableName;
 		private IEnumerable _enumerable;
@@ -62,14 +67,14 @@ namespace Bebop.Template
 
 		public string Apply(TemplateContext templateContext)
 		{
-			StringBuilder nodeResponse = new StringBuilder();
+			var nodeResponse = new StringBuilder();
+
+			var context = new TemplateContext(templateContext);
+			context[_loopVariableName] = null;
 
 			foreach (var i in _enumerable)
 			{
-				var context =
-					templateContext.Union(
-						new TemplateContext { { _loopVariableName, i } });
-
+				context[_loopVariableName] = i;
 				nodeResponse.Append(_innerTemplate.Apply((TemplateContext)context));
 			}
 

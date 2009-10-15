@@ -7,35 +7,6 @@ using System.Web;
 
 namespace Bebop.Template
 {
-	public sealed class BebopTemplateResponse : IViewResponse
-	{
-		private static ITemplateEngine _templateEngine = new BebopTemplateEngine();
-
-		private string _fileName;
-		private TemplateContext _templateContext;
-
-		public BebopTemplateResponse(
-			string fileName,
-			TemplateContext templateContext)
-		{
-			_fileName = fileName;
-			_templateContext = templateContext;
-		}
-
-		#region IViewResponse Members
-
-		public void Execute(HttpResponse response)
-		{
-			var fileStream = new FileStream(_fileName, FileMode.Open);
-
-			var template = _templateEngine.CreateFromStream(fileStream);
-
-			response.Output.Write(template.Apply(_templateContext));
-		}
-
-		#endregion
-	}
-
 	public sealed class TemplateContext : Dictionary<string, object>
 	{
 		public TemplateContext()
@@ -56,11 +27,25 @@ namespace Bebop.Template
 
 	public sealed class BebopTemplate : ITemplate
 	{
+		private IEnumerable<INode> _nodes;
+
+		public BebopTemplate(IEnumerable<INode> nodes)
+		{
+			_nodes = nodes;
+		}
+
 		#region ITemplate Members
 
 		public string Apply(TemplateContext context)
 		{
-			throw new NotImplementedException();
+			var response = new StringBuilder();
+
+			foreach (var node in _nodes)
+			{
+				response.Append(node.Apply(context));
+			}
+
+			return response.ToString();
 		}
 
 		#endregion

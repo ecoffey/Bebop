@@ -14,30 +14,33 @@ namespace Bebop
 
 		public static IViewResponse Render(
 			this IView view,
-			string templateFilePath)
+			string templateFilePath,
+			TemplateContext templateContext)
 		{
-			return new TemplateResponse(TemplateEngine.CreateFromStream(new FileStream(templateFilePath, FileMode.Open)));
+			return new TemplateResponse(
+				TemplateEngine.CreateFromStream(new FileStream(templateFilePath, FileMode.Open)),
+				templateContext);
 		}
 	}
 
-	public class TemplateResponse : IViewResponse
+	public sealed class TemplateResponse : IViewResponse
 	{
 		private ITemplate _template;
+		private TemplateContext _templateContext;
 
-		public TemplateResponse(ITemplate template)
+		public TemplateResponse(
+			ITemplate template,
+			TemplateContext templateContext)
 		{
-			if (template == null)
-			{
-				throw new ArgumentNullException("template");
-			}
-
 			_template = template;
+			_templateContext = templateContext;
 		}
 
 		#region IViewResponse Members
 
 		public void Execute(HttpResponse response)
 		{
+			response.Output.Write(_template.Apply(_templateContext));
 		}
 
 		#endregion
