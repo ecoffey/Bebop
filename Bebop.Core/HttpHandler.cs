@@ -44,7 +44,7 @@ namespace Bebop
 		{
 			var viewResponse = null as IViewResponse;
 			var viewRequestContext = new ViewRequestContext(context, _requestContext.RouteData.Values);
-			var requestVerb = context.Request.HttpMethod;
+			var requestVerb = context.Request.HttpMethod.ToUpper();
 
 			if (requestVerb == VERB_GET)
 			{
