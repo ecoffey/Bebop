@@ -17,7 +17,7 @@ namespace Bebop.Example.Project
 
         protected void Application_Start(object sender, EventArgs e)
         {
-			ContainerProvider = 
+			ContainerProvider =
 				new BebopConfiguration(RouteTable.Routes, new ContainerBuilder())
 					.AddApplication("something/", new Bebop.Example.App.Application())
 					.Build();
