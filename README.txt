@@ -11,4 +11,5 @@ Like Django, in Bebop a particular web site is really a composition of applicati
 
 In Bebop a typical web project serves to host the Templates and config glue.  The web project references class library Applications.  An application is a collection of Views and URL mappings
 
+
 Bebop integrates with Autofac to create Views to serve requests.
