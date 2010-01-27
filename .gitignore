@@ -1,6 +1,9 @@
 *.dll
 *.suo
 *.user
+*.pidb
+*.usertasks
+*.userprefs
 bin/
 obj/
 Bin/
