@@ -37,14 +37,14 @@ namespace Bebop
 
 		public bool IsReusable
 		{
-			get { return true; }
+			get { return false; }
 		}
 
 		public void ProcessRequest(HttpContext context)
 		{
 			var viewResponse = null as IViewResponse;
 			var viewRequestContext = new ViewRequestContext(context, _requestContext.RouteData.Values);
-			var requestVerb = context.Request.HttpMethod.ToUpper();
+			var requestVerb = context.Request.HttpMethod;
 
 			if (requestVerb == VERB_GET)
 			{

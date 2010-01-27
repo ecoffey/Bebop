@@ -11,7 +11,7 @@ namespace Bebop.Example.App
 	{
 		public override IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory)
 		{
-			yield return routeFactory.Map<BlahView>("blah/{d}");
+			yield return routeFactory.Create<BlahView>("blah/{d}");
 		}
 
 		protected override void Load(ContainerBuilder builder)

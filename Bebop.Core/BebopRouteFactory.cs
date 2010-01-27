@@ -20,7 +20,7 @@ namespace Bebop
 			_container = container;
 		}
 
-		public BebopRoute<TView> Map<TView>(string url) where TView : IView
+		public BebopRoute<TView> Create<TView>(string url) where TView : IView
 		{
 			return new BebopRoute<TView>(url, _container);
 		}
