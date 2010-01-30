@@ -48,19 +48,19 @@ namespace Bebop
 
 			if (requestVerb == VERB_GET)
 			{
-				resourceResponse = _resource.Get(viewRequestContext);
+				resourceResponse = _resource.Get(resourceRequestContext);
 			}
 			else if (requestVerb == VERB_POST)
 			{
-				resourceResponse = _resource.Post(viewRequestContext);
+				resourceResponse = _resource.Post(resourceRequestContext);
 			}
 			else if (requestVerb == VERB_PUT)
 			{
-				resourceResponse = _resource.Put(viewRequestContext);
+				resourceResponse = _resource.Put(resourceRequestContext);
 			}
 			else if (requestVerb == VERB_DELETE)
 			{
-				resourceResponse = _resource.Delete(viewRequestContext);
+				resourceResponse = _resource.Delete(resourceRequestContext);
 			}
 			else
 			{
