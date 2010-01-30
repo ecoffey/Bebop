@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Bebop
 {
-	public sealed class SimpleResponse : IViewResponse
+	public sealed class SimpleResponse : IResourceResponse
 	{
 		private string _text;
 

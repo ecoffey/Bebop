@@ -20,9 +20,9 @@ namespace Bebop
 			_container = container;
 		}
 
-		public BebopRoute<TView> Create<TView>(string url) where TView : IView
+		public BebopRoute<TResource> Create<TResource>(string url) where TResource : IResource
 		{
-			return new BebopRoute<TView>(url, _container);
+			return new BebopRoute<TResource>(url, _container);
 		}
 	}
 }

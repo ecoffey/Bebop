@@ -28,14 +28,14 @@ namespace Bebop
 
 			var builder = new ContainerBuilder();
 
-			var viewTypes =
+			var resourceTypes =
 				from type in Assembly.GetAssembly(this.GetType()).GetTypes()
-				where typeof(IView).IsAssignableFrom(type)
+				where typeof(IResource).IsAssignableFrom(type)
 				select type;
 
-			foreach (var viewType in viewTypes)
+			foreach (var resourceType in resourceTypes)
 			{
-				builder.Register(viewType).FactoryScoped();
+				builder.Register(resourceType).FactoryScoped();
 			}
 
 			this.Load(builder);

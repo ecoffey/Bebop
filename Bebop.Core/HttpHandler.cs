@@ -15,9 +15,9 @@ namespace Bebop
 		private const string VERB_DELETE = "DELETE";
 
 		private RequestContext _requestContext;
-		private IView _view;
+		private IResource _resource;
 
-		internal HttpHandler(RequestContext requestContext, IView view)
+		internal HttpHandler(RequestContext requestContext, IResource view)
 		{
 			if (requestContext == null)
 			{
@@ -30,7 +30,7 @@ namespace Bebop
 			}
 
 			_requestContext = requestContext;
-			_view = view;
+			_resource = view;
 		}
 
 		#region IHttpHandler Members
@@ -42,25 +42,25 @@ namespace Bebop
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var viewResponse = null as IViewResponse;
-			var viewRequestContext = new ViewRequestContext(context, _requestContext.RouteData.Values);
+			var resourceResponse = null as IResourceResponse;
+			var resourceRequestContext = new ResourceRequestContext(context, _requestContext.RouteData.Values);
 			var requestVerb = context.Request.HttpMethod;
 
 			if (requestVerb == VERB_GET)
 			{
-				viewResponse = _view.Get(viewRequestContext);
+				resourceResponse = _resource.Get(viewRequestContext);
 			}
 			else if (requestVerb == VERB_POST)
 			{
-				viewResponse = _view.Post(viewRequestContext);
+				resourceResponse = _resource.Post(viewRequestContext);
 			}
 			else if (requestVerb == VERB_PUT)
 			{
-				viewResponse = _view.Put(viewRequestContext);
+				resourceResponse = _resource.Put(viewRequestContext);
 			}
 			else if (requestVerb == VERB_DELETE)
 			{
-				viewResponse = _view.Delete(viewRequestContext);
+				resourceResponse = _resource.Delete(viewRequestContext);
 			}
 			else
 			{
@@ -68,9 +68,9 @@ namespace Bebop
 					String.Format("Unknown verb {0}", requestVerb));
 			}
 
-			if (viewResponse != null)
+			if (resourceResponse != null)
 			{
-				viewResponse.Execute(context.Response);
+				resourceResponse.Execute(context.Response);
 			}
 		}
 

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Bebop
 {
-	public sealed class RedirectResponse : IViewResponse
+	public sealed class RedirectResponse : IResourceResponse
 	{
 		private string _url;
 

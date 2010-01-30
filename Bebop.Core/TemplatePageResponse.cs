@@ -7,7 +7,7 @@ using System.Web.Compilation;
 
 namespace Bebop
 {
-	public sealed class TemplatePageResponse : IViewResponse
+	public sealed class TemplatePageResponse : IResourceResponse
 	{
 		private string _virtualPath;
 		private IDictionary<string, object> _templateContext;
