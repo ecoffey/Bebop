@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Routing;
-using Autofac.Integration.Web;
 using System.Reflection;
 using System.Linq;
 using Autofac;

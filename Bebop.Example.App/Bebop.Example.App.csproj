@@ -59,9 +59,9 @@
     <Compile Include="SomeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bebop.Core\Bebop.Core.csproj">
+    <ProjectReference Include="..\Bebop\Bebop.csproj">
       <Project>{3BC513C4-73A9-457C-BB85-A7FD90567C98}</Project>
-      <Name>Bebop.Core</Name>
+      <Name>Bebop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
