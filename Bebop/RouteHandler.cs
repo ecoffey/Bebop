@@ -9,14 +9,14 @@ namespace Bebop
 {
     public sealed class RouteHandler : IRouteHandler
     {
-		private Type _resourceType;
-		private IContainer _container;
+		private readonly Type _resourceType;
+		private readonly IContainer _container;
 
 		public RouteHandler(Type resourceType, IContainer container)
 		{
 			if (resourceType == null)
 			{
-				throw new ArgumentNullException("viewType");
+				throw new ArgumentNullException("resourceType");
 			}
 
 			if (container == null)
@@ -32,9 +32,12 @@ namespace Bebop
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-			return new HttpHandler(
-				requestContext,
-				_container.Resolve(_resourceType) as IResource);
+			using (var scope = _container.BeginLifetimeScope())
+			{
+				return new HttpHandler(
+					requestContext,
+					scope.Resolve(_resourceType) as IResource);
+			}
         }
 
         #endregion

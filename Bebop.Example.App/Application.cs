@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Routing;
+using Autofac;
 using Autofac.Builder;
 
 namespace Bebop.Example.App
@@ -16,7 +17,7 @@ namespace Bebop.Example.App
 
 		protected override void Load(ContainerBuilder builder)
 		{
-			builder.Register<SomeService>();
+			builder.RegisterType<SomeService>();
 		}
 	}
 }

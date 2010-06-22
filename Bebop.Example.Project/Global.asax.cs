@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
+using Autofac;
 using Autofac.Integration.Web;
 using Autofac.Builder;
 using Bebop;

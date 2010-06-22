@@ -4,6 +4,7 @@
 *.pidb
 *.usertasks
 *.userprefs
+_ReSharper*
 bin/
 obj/
 Bin/

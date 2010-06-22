@@ -6,6 +6,7 @@ using Autofac.Builder;
 using System.Reflection;
 using System.Web.Routing;
 using Autofac;
+using Autofac.Core;
 
 namespace Bebop
 {
@@ -35,18 +36,23 @@ namespace Bebop
 
 			foreach (var resourceType in resourceTypes)
 			{
-				builder.Register(resourceType).FactoryScoped();
+				builder.RegisterType(resourceType).InstancePerDependency();
 			}
 
 			this.Load(builder);
 
-			builder.Build(container);
+			builder.Update(container);
 		}
 
 		#endregion
 
 		protected virtual void Load(ContainerBuilder builder)
 		{
+		}
+
+		public void Configure(IComponentRegistry componentRegistry)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

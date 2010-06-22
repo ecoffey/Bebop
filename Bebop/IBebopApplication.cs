@@ -6,6 +6,7 @@ using Autofac;
 using Autofac.Builder;
 using System.Web.Routing;
 using System.Reflection;
+using Autofac.Core;
 
 namespace Bebop
 {
