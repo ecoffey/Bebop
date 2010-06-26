@@ -18,9 +18,9 @@ namespace Bebop
 				throw new ArgumentNullException("routes");
 			}
 
-			if (String.IsNullOrEmpty(root))
+			if (root == null)
 			{
-				throw new ArgumentOutOfRangeException("root");
+				throw new ArgumentNullException("root");
 			}
 			
 			if (subRoutes == null)

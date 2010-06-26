@@ -35,9 +35,9 @@ namespace Bebop
 
         public BebopConfiguration AddApplication(string urlRoot, IBebopApplication application)
         {
-            if (String.IsNullOrEmpty(urlRoot))
+            if (urlRoot == null)
             {
-                throw new ArgumentOutOfRangeException("urlRoot");
+				throw new ArgumentNullException("urlRoot");
             }
 
             if (application == null)

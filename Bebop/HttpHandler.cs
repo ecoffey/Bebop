@@ -14,23 +14,23 @@ namespace Bebop
 		private const string VERB_PUT = "PUT";
 		private const string VERB_DELETE = "DELETE";
 
-		private RequestContext _requestContext;
-		private IResource _resource;
+		private readonly RequestContext _requestContext;
+		private readonly IResource _resource;
 
-		internal HttpHandler(RequestContext requestContext, IResource view)
+		internal HttpHandler(RequestContext requestContext, IResource resource)
 		{
 			if (requestContext == null)
 			{
 				throw new ArgumentNullException("requestContext");
 			}
 
-			if (view == null)
+			if (resource == null)
 			{
-				throw new ArgumentNullException("view");
+				throw new ArgumentNullException("resource");
 			}
 
 			_requestContext = requestContext;
-			_resource = view;
+			_resource = resource;
 		}
 
 		#region IHttpHandler Members

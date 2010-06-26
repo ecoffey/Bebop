@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Autofac.Builder;
 using System.Reflection;
-using System.Web.Routing;
 using Autofac;
 using Autofac.Core;
 
@@ -12,15 +9,13 @@ namespace Bebop
 {
 	public abstract class BebopApplication : IBebopApplication
 	{
-		#region IApplication Members
-
 		public abstract IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory);
 
-		#endregion
+		protected virtual void Load(ContainerBuilder builder)
+		{
+		}
 
-		#region IModule Members
-
-		public void Configure(IContainer container)
+		public void Configure(IComponentRegistry container)
 		{
 			if (container == null)
 			{
@@ -39,20 +34,9 @@ namespace Bebop
 				builder.RegisterType(resourceType).InstancePerDependency();
 			}
 
-			this.Load(builder);
+			Load(builder);
 
 			builder.Update(container);
-		}
-
-		#endregion
-
-		protected virtual void Load(ContainerBuilder builder)
-		{
-		}
-
-		public void Configure(IComponentRegistry componentRegistry)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
