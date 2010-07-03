@@ -23,9 +23,9 @@ namespace Bebop
 			}
 
 			var builder = new ContainerBuilder();
-
+			
 			var resourceTypes =
-				from type in Assembly.GetAssembly(this.GetType()).GetTypes()
+				from type in this.GetType().Assembly.GetTypes()
 				where typeof(IResource).IsAssignableFrom(type)
 				select type;
 

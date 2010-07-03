@@ -8,7 +8,7 @@ namespace Bebop
 {
 	public sealed class BebopRouteFactory
 	{
-		private IContainer _container;
+		private readonly IContainer _container;
 
 		internal BebopRouteFactory(IContainer container)
 		{
@@ -20,9 +20,24 @@ namespace Bebop
 			_container = container;
 		}
 
-		public BebopRoute<TResource> Create<TResource>(string url) where TResource : IResource
+		public IMapResourceTo<TResource> Map<TResource>() where TResource : IResource
 		{
-			return new BebopRoute<TResource>(url, _container);
+			return new MapResourceTo<TResource>(_container);
+		}
+
+		private sealed class MapResourceTo<TResource> : IMapResourceTo<TResource> where TResource : IResource
+		{
+			private readonly IContainer _container;
+
+			public MapResourceTo(IContainer container)
+			{
+				_container = container;
+			}
+
+			public BebopRoute<TResource> To(string url)
+			{
+				return new BebopRoute<TResource>(url, _container);
+			}
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Example.App
 	{
 		public override IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory)
 		{
-			yield return routeFactory.Create<Index>("");
+			yield return routeFactory.Map<Index>().To("");
 		}
 	}
 }

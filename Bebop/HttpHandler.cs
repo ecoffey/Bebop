@@ -42,7 +42,7 @@ namespace Bebop
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var resourceResponse = null as IResourceResponse;
+			IResourceResponse resourceResponse;
 			var resourceRequestContext = new ResourceRequestContext(context, _requestContext.RouteData.Values);
 			var requestVerb = context.Request.HttpMethod;
 
@@ -68,10 +68,16 @@ namespace Bebop
 					String.Format("Unknown verb {0}", requestVerb));
 			}
 
-			if (resourceResponse != null)
+			if (resourceResponse == null)
 			{
-				resourceResponse.Execute(context.Response);
+				throw new InvalidOperationException(
+					String.Format(
+						"Resource type '{0}' returned a null response for the verb '{1}'",
+						_resource.GetType().FullName,
+						requestVerb));
 			}
+
+			resourceResponse.Execute(context.Response);
 		}
 
 		#endregion

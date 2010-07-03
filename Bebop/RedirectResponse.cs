@@ -8,7 +8,7 @@ namespace Bebop
 {
 	public sealed class RedirectResponse : IResourceResponse
 	{
-		private string _url;
+		private readonly string _url;
 
 		public RedirectResponse(string url)
 		{
