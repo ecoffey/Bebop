@@ -10,7 +10,7 @@ namespace Example.App
 	{
 		public override IResourceResponse Get(ResourceRequestContext context)
 		{
-			return new SimpleResponse("blah");
+			return new TemplateResponse("~/index.haml");
 		}
 	}
 

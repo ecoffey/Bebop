@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Autofac.Integration.Web.dll</HintPath>
     </Reference>
+    <Reference Include="NHaml">
+      <HintPath>..\References\NHaml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -77,6 +80,7 @@
     <Compile Include="RouteMapping.cs" />
     <Compile Include="SimpleResponse.cs" />
     <Compile Include="Resource.cs" />
+    <Compile Include="TemplateResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

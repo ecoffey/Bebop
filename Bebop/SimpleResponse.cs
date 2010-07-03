@@ -8,7 +8,7 @@ namespace Bebop
 {
 	public sealed class SimpleResponse : IResourceResponse
 	{
-		private string _text;
+		private readonly string _text;
 
 		public SimpleResponse(string text)
 		{
