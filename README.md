@@ -1,14 +1,20 @@
-Bebop is an effort to explore some of the ideas that make Django a flexible and fun web framework using Asp.net and C#.  The source code can be found at [http://github.com/ecoffey/Bebop](http://github.com/ecoffey/Bebop "github")
+# Introduction
 
-# Overview
+Bebop is a opinionated .Net web framework.  It currently lives at [http://github.com/ecoffey/Bebop](http://github.com/ecoffey/Bebop "github").
 
-* Resource: A Resource maps to one URL and must implement at least one of the http verbs (get, put, post, delete).  This design allows Resources to stay concise and targeted.
-* Template: This could be anything from asp.net mvc style .aspx pages, to any other templating engine
-* Model: This is intentionally left open for people to implement differently.  My recommendation is a combination of NHibernate and FluentNHibernate
+# The Opinions
 
-Like Django, in Bebop a particular web site is really a composition of applications held together with a little bit of config glue.
+It makes two key decisions to quickly get a project off the ground:
 
-In Bebop a typical web project serves to host the Templates and config glue.  The web project references class library Applications.  An application is a collection of Resources and URL mappings
+* Autofac :  Bebop is built on the excellent Inversion of Control Container, Autofac.
+* NHaml :  NHaml is a .Net port of the Haml markup language.  It helps to keep views clean, concise and obvious.
 
-Bebop embeds Autofac to automatically create Dependency Injected Resources to serve up Requests.  Bebop Applications are also given a chance to register things in the container when the app first loads.  This allows Resources to just declare what they need from Context and get on with life.
+# The Players
+
+* Resource : A Resource is a class that represents, well, a Resource!  It must implement at least one of the HTTP Verbs (Get, Put, Post, Delete) to really be useful to anyone.  Furthermore because Bebop is built on Autofac when a request comes in the Resouce to handle it is resolved by the IoC Container.  This means
+a Resource can just declare what it needs to get work done and get on with life.
+
+* Application : In Bebop an Application is a collection of related Resources, and also where URLs are mapped to the Resource that will handle them.  Again, Autofac is leveraged so that when an Application is loaded all the Resources are automatically registered in the Container, and the Application itself can register needed dependicies as well.
+
+* Project : The Project in Bebop is the actual Website.  It is where Applications are loaded and rooted at a particular URL, and where the Views live.
 
