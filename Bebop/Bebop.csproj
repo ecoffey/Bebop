@@ -70,7 +70,6 @@
     <Compile Include="BebopRouteFactory.cs" />
     <Compile Include="HttpHandler.cs" />
     <Compile Include="IBebopApplication.cs" />
-    <Compile Include="IMapResourceTo.cs" />
     <Compile Include="IResource.cs" />
     <Compile Include="IResourceResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

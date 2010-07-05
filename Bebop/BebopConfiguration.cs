@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Builder;
@@ -13,6 +14,8 @@ namespace Bebop
         private readonly ContainerBuilder _containerBuilder;
         private readonly BebopRouteFactory _routeFactory;
         private readonly RouteCollection _routes;
+
+    	private readonly Dictionary<string, BebopApplication> _applications;
 
         public BebopConfiguration(RouteCollection routes, ContainerBuilder containerBuilder)
         {
@@ -31,9 +34,16 @@ namespace Bebop
 
             _container = new Container();
             _routeFactory = new BebopRouteFactory(_container);
+
+        	_applications = new Dictionary<string, BebopApplication>();
         }
 
-        public BebopConfiguration AddApplication(string urlRoot, IBebopApplication application)
+		public BebopConfiguration AddApplication(BebopApplication application)
+		{
+			return AddApplication(String.Empty, application);
+		}
+
+        public BebopConfiguration AddApplication(string urlRoot, BebopApplication application)
         {
             if (urlRoot == null)
             {
@@ -45,17 +55,27 @@ namespace Bebop
                 throw new ArgumentNullException("application");
             }
 
+			if (_applications.ContainsKey(urlRoot))
+			{
+				throw new InvalidOperationException(
+					String.Format(
+						"URL root '{0}' already contains application '{1}'",
+						urlRoot,
+						_applications[urlRoot].GetType().FullName));
+			}
+
             _containerBuilder.RegisterModule(application);
+
             _routes.MapSubRoutes(urlRoot, application.Map(_routeFactory));
+
+        	_applications[urlRoot] = application;
 
             return this;
         }
 
-        public IContainerProvider Build()
+        public void Build()
         {
         	_containerBuilder.Update(_container);
-
-            return new ContainerProvider(_container);
         }
     }
 }

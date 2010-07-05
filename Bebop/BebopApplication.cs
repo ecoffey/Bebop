@@ -4,26 +4,36 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Core;
+using Module = Autofac.Module;
 
 namespace Bebop
 {
-	public abstract class BebopApplication : IBebopApplication
+	public abstract class BebopApplication : IModule
 	{
-		public abstract IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory);
+		private readonly ContainerBuilder _registrations = new ContainerBuilder();
+		private readonly IList<KeyValuePair<Type, string>> _routes = new List<KeyValuePair<Type, string>>();
 
-		protected virtual void Load(ContainerBuilder builder)
+		protected void Register(Action<ContainerBuilder> container)
 		{
+			container(_registrations);
 		}
 
-		public void Configure(IComponentRegistry container)
+		protected void Map<TResource>(string url) where TResource : IResource
 		{
-			if (container == null)
-			{
-				throw new ArgumentNullException("container");
-			}
+			_routes.Add(new KeyValuePair<Type, string>(typeof(TResource), url));
+		}
+
+		internal IEnumerable<BebopRoute> Map(BebopRouteFactory routeFactory)
+		{
+			return _routes.Select(route => routeFactory.Map(route.Key, route.Value));
+		}
+
+		public void Configure(IComponentRegistry componentRegistry)
+		{
+			if (componentRegistry == null) throw new ArgumentNullException("componentRegistry");
 
 			var builder = new ContainerBuilder();
-			
+
 			var resourceTypes =
 				from type in this.GetType().Assembly.GetTypes()
 				where typeof(IResource).IsAssignableFrom(type)
@@ -34,9 +44,8 @@ namespace Bebop
 				builder.RegisterType(resourceType).InstancePerDependency();
 			}
 
-			Load(builder);
-
-			builder.Update(container);
+			builder.Update(componentRegistry);
+			_registrations.Update(componentRegistry);
 		}
 	}
 }

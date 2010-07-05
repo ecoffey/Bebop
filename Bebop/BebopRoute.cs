@@ -7,9 +7,9 @@ using Autofac;
 
 namespace Bebop
 {
-	public abstract class BebopRoute : Route
+	public class BebopRoute : Route
 	{
-		protected BebopRoute(string url, Type resourceType, IContainer container)
+		public BebopRoute(string url, Type resourceType, IContainer container)
 			: base(url, new RouteHandler(resourceType, container))
 		{
 		}
